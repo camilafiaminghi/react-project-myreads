@@ -3,12 +3,14 @@ import { MemoryRouter } from 'react-router';
 import Bookshelves from './Bookshelves';
 import App from './App';
 
-it('renders without crashing', () => {
-	const wrapper = mount(
-    <MemoryRouter initialEntries={[ '/random' ]}>
-      <App/>
-    </MemoryRouter>
-  );
+describe('<App />', function() {
+	it('renders without crashing', () => {
+		const wrapper = mount(
+	    <MemoryRouter initialEntries={[ '/random' ]}>
+	      <App/>
+	    </MemoryRouter>
+	  );
 
-  expect(wrapper.find(Bookshelves)).toHaveLength(0);
+	  expect(wrapper.find(Bookshelves)).toHaveLength(0);
+	});
 });
