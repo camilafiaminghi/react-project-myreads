@@ -1,19 +1,23 @@
 const defaultBookshelves = [
   {
     label: 'Currently Reading',
-    value: 'currentlyReading'
+    value: 'currentlyReading',
+    show: true,
   },
   {
     label: 'Want to Read',
-    value: 'wantToRead'
+    value: 'wantToRead',
+    show: true
   },
   {
     label: 'Read',
-    value: 'read'
+    value: 'read',
+    show: true
   },
   {
     label: 'Remove from shelf',
-    value: 'none'
+    value: 'none',
+    show: false
   }
 ]
 

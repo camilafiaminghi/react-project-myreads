@@ -4,10 +4,12 @@ import './Bookshelves.scss';
 
 class Bookshelves extends Component {
   render() {
+  	const bookshelves = defaultBookshelves.filter((bookshelve) => bookshelve.show);
+
   	return (
       <div className="bookshelves-title">
         <h1>MyReads</h1>
-        {defaultBookshelves.map((bookshelve, index) => (
+        {bookshelves.map((bookshelve, index) => (
         	<div key={index} className="list-books-content">
         		{bookshelve.label}
         	</div>
