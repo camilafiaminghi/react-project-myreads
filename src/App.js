@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import './App.scss';
 import Bookshelves from './Bookshelves';
+import './App.scss';
 
 class App extends Component {
   render() {

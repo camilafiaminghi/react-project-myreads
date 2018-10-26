@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Bookshelves.css';
+import './Bookshelves.scss';
 
 class Bookshelves extends Component {
   render() {
