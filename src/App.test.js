@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter, Route } from 'react-router';
 import Bookshelves from './Bookshelves';
 import App from './App';
 
 describe('<App />', function() {
 	it('renders without crashing', () => {
-		const wrapper = mount(
-	    <MemoryRouter initialEntries={[ '/random' ]}>
-	      <App/>
-	    </MemoryRouter>
-	  );
+		shallow(<App />);
+	});
 
-	  expect(wrapper.find(Bookshelves)).toHaveLength(0);
+	it('initial path', () => {
+		const wrapper = mount(
+			<MemoryRouter initialEntries={[ '/' ]}>
+				<Bookshelves />
+			</MemoryRouter>
+		);
+
+	  expect(wrapper.find(Bookshelves)).toHaveLength(1);
 	});
 });
