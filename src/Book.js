@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ChangeBookshelf from './ChangeBookshelf';
 import './Book.scss';
 
-const Book = ({book}) => {
+const Book = ({book, updateBookshelf}) => {
 	const bookImg = {backgroundImage: 'url(' + book.imageLinks.thumbnail + ')'};
 
 	return (
@@ -10,6 +11,9 @@ const Book = ({book}) => {
 			<div className="book">
 				<div className="book-top">
 					<div className="book-cover" style={bookImg}></div>
+					<div className="book-shelf-changer">
+						<ChangeBookshelf book={book} updateBookshelf={updateBookshelf} />
+					</div>
 					<div className="book-title">
 						{book.title}
 					</div>
@@ -23,8 +27,8 @@ const Book = ({book}) => {
 };
 
 Book.propTypes = {
-  // category: PropTypes.string.isRequired,
-  book: PropTypes.object.isRequired
+  book: PropTypes.object.isRequired,
+  updateBookshelf: PropTypes.func.isRequired
 };
 
 export default Book;
