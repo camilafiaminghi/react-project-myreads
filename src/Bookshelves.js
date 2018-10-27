@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import defaultBookshelves from './defaultBookshelves';
 import * as BooksAPI from './BooksAPI';
+import Bookshelf from './Bookshelf';
 import './Bookshelves.scss';
 
 class Bookshelves extends Component {
@@ -41,10 +42,11 @@ class Bookshelves extends Component {
   	return (
       <div className="bookshelves-title">
         <h1>MyReads</h1>
-        {bookshelves.map((bookshelve, index) => (
-        	<div key={index} className="list-books-content">
-        		{bookshelve.label}
-        	</div>
+        {bookshelves.map((bookshelf, index) => (
+        	<Bookshelf
+        		key={index}
+        		category={bookshelf.label}
+        		books={this.state[bookshelf.value]} />
         ))}
       </div>
     );
