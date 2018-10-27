@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-preset-env": "^1.7.0",
     "node-sass": "^4.9.4",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
@@ -28,20 +29,22 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "react-addons-test-utils": "^15.6.2",
-    "react-test-renderer": "^16.6.0"
+    "react-test-renderer": "^16.6.0",
+    "regenerator-runtime": "^0.12.1"
   },
   "jest": {
-    "coveragePathIgnorePatterns": [
+  	"coveragePathIgnorePatterns": [
       "node_modules"
     ],
     "setupFiles": [
