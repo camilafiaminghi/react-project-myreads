@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import Bookshelves from './Bookshelves';
 import App from './App';

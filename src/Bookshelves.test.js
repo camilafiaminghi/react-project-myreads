@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Bookshelves from './Bookshelves';
 import defaultBookshelves from './defaultBookshelves';
 
@@ -18,6 +18,6 @@ describe('<Bookshelves />', function() {
 
 	it(`render bookshelvesKeys.length bookshelf`, () => {
 		const wrapper = mount(<Bookshelves />);
-		expect(wrapper.find('.list-books-content')).toHaveLength(bookshelvesKeys.length);
+		expect(wrapper.find('.bookshelf')).toHaveLength(bookshelvesKeys.length);
 	});
 });
