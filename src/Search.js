@@ -31,7 +31,7 @@ class Search extends Component {
 			query: query.trim()
 		}));
 
-		if (query.length > 3) {
+		if (query.length >= 3) {
 			this.handleSearch(query);
 		} else if (query.length === 0) {
 			this.setState(currentState => ({books: []}));
