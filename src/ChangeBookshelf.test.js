@@ -13,7 +13,7 @@ describe('<ChangeBookshelf />', function() {
 	};
 
 	it('renders without crashing', () => {
-		const updateBookshelf = jest.fn();
-		shallow(<ChangeBookshelf book={book} updateBookshelf={updateBookshelf} />);
+		const handleUpdateBookshelf = jest.fn();
+		shallow(<ChangeBookshelf book={book} handleUpdateBookshelf={handleUpdateBookshelf} />);
 	});
 });

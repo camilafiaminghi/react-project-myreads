@@ -10,7 +10,7 @@ describe('<Bookshelf />', function() {
 	it('renders without crashing', () => {
 		const books    = [];
 		const category = bookshelvesKeys[0];
-		const updateBookshelf = jest.fn();
-		shallow(<Bookshelf books={books} category={category} updateBookshelf={updateBookshelf} />);
+		const handleUpdateBookshelf = jest.fn();
+		shallow(<Bookshelf books={books} category={category} handleUpdateBookshelf={handleUpdateBookshelf} />);
 	});
 });

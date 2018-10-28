@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ChangeBookshelf from './ChangeBookshelf';
 import './Book.scss';
 
-const Book = ({book, updateBookshelf}) => {
+const Book = ({book, handleUpdateBookshelf}) => {
 	const bookImg = {backgroundImage: 'url(' + book.imageLinks.thumbnail + ')'};
 
 	return (
@@ -12,7 +12,7 @@ const Book = ({book, updateBookshelf}) => {
 				<div className="book-top">
 					<div className="book-cover" style={bookImg}></div>
 					<div className="book-shelf-changer">
-						<ChangeBookshelf book={book} updateBookshelf={updateBookshelf} />
+						<ChangeBookshelf book={book} handleUpdateBookshelf={handleUpdateBookshelf} />
 					</div>
 					<div className="book-title">
 						{book.title}
@@ -28,7 +28,7 @@ const Book = ({book, updateBookshelf}) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  updateBookshelf: PropTypes.func.isRequired
+  handleUpdateBookshelf: PropTypes.func.isRequired
 };
 
 export default Book;

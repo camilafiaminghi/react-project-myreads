@@ -11,14 +11,14 @@ describe('<Book />', function() {
 		authors: ['William E. Shotts, Jr.']
 	};
 
-	const updateBookshelf = jest.fn();
+	const handleUpdateBookshelf = jest.fn();
 
 	it('renders without crashing', () => {
-		shallow(<Book book={book} updateBookshelf={updateBookshelf} />);
+		shallow(<Book book={book} handleUpdateBookshelf={handleUpdateBookshelf} />);
 	});
 
 	it('renders children', () => {
-		const wrapper = shallow(<Book book={book} updateBookshelf={updateBookshelf} />);
+		const wrapper = shallow(<Book book={book} handleUpdateBookshelf={handleUpdateBookshelf} />);
 		expect(wrapper.find('.book-title')).toBeDefined();
 		expect(wrapper.find('.book-authors')).toBeDefined();
 		expect(wrapper.find('.book-cover')).toBeDefined();

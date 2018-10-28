@@ -1,6 +1,7 @@
 import React from 'react';
 import Bookshelves from './Bookshelves';
 import defaultBookshelves from './defaultBookshelves';
+import defaultBooks from './defaultBooks';
 
 describe('<Bookshelves />', function() {
 	const bookshelvesKeys = defaultBookshelves
@@ -9,11 +10,6 @@ describe('<Bookshelves />', function() {
 
 	it('renders without crashing', () => {
 		shallow(<Bookshelves />);
-	});
-
-	it('has state keys with empty arrays', () => {
-		const wrapper = mount(<Bookshelves />);
-		expect(Object.keys(wrapper.state())).toEqual(bookshelvesKeys);
 	});
 
 	it(`render bookshelvesKeys.length bookshelf`, () => {

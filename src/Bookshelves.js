@@ -4,41 +4,56 @@ import * as BooksAPI from './BooksAPI';
 import Bookshelf from './Bookshelf';
 import './Bookshelves.scss';
 
-// import defaultBooks from './defaultBooks';
-
 class Bookshelves extends Component {
 
 	constructor() {
 		super();
-		this.state = this.setBookshelvesStates();
+		this.state = {
+			books: [],
+			bookshelves: this.setStateBookshelves()
+		}
 	}
 
-	setBookshelvesStates = () => {
+	/**
+   * Add bookshelves from default object
+   */
+	setStateBookshelves = () => {
   	let categories = {};
   	defaultBookshelves
 			.filter(bookshelve => bookshelve.show)
-			.forEach(bookshelve => {
-				categories[bookshelve.value] = [];
-			});
-
+			.forEach(bookshelve => { categories[bookshelve.value] = []; });
 		return categories;
   }
 
-	updateBooks = (books) => {
-		Object.keys(this.state).forEach(category => {
-			const booksByCategory = books.filter(book => book.shelf === category);
-			this.setState((currentState) => ({[category]: booksByCategory}))
+  /**
+   * Update both states books and bookshelves
+   */
+	updateStateBookshelves = (books) => {
+		let bookshelves = {};
+		Object.keys(this.state.bookshelves).forEach(bookshelf => {
+			const booksByCategory = books.filter(book => book.shelf === bookshelf);
+			bookshelves[bookshelf] = booksByCategory;
 		});
+
+		this.setState(currentState => ({bookshelves, books}));
   }
 
-  updateBookshelf = (book, shelf) => {
-  	// console.log(shelf, book, this);
+  /**
+   * Update fired by onChange
+   */
+  handleUpdateBookshelf = (book, shelf) => {
+  	BooksAPI.update(book, shelf)
+      .then((response) => {
+      	book.shelf = shelf;
+		  	const bookshelves = [...this.state.books, book];
+		  	this.updateStateBookshelves([...(new Set(bookshelves))]);
+      });
   }
 
   componentDidMount() {
 		BooksAPI.getAll()
       .then((books) => {
-      	this.updateBooks(books);
+      	this.updateStateBookshelves(books);
       });
   }
 
@@ -52,8 +67,8 @@ class Bookshelves extends Component {
         	<Bookshelf
         		key={index}
         		category={bookshelf.label}
-        		books={this.state[bookshelf.value]}
-        		updateBookshelf={this.updateBookshelf} />
+        		books={this.state.bookshelves[bookshelf.value]}
+        		handleUpdateBookshelf={this.handleUpdateBookshelf} />
         ))}
       </div>
     );

@@ -7,18 +7,17 @@ class ChangeBookshelf extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: ''
+			value: 'move'
 		}
 	}
 
 	static propTypes = {
 		book: PropTypes.object.isRequired,
-		updateBookshelf: PropTypes.func.isRequired
+		handleUpdateBookshelf: PropTypes.func.isRequired
 	}
 
 	handleChange = (event) => {
-		this.setState({value: event.target.value});
-		this.props.updateBookshelf(this.props.book, event.target.value);
+		this.props.handleUpdateBookshelf(this.props.book, event.target.value);
 	}
 
 	render() {
@@ -26,7 +25,8 @@ class ChangeBookshelf extends Component {
 			<select onChange={(event) => this.handleChange(event)} value={this.state.value}>
 				<option value="move" disabled="">Move to...</option>
 				{defaultBookshelves.map((bookshelf, index) => (
-					<option key={index} value={bookshelf.value}>{bookshelf.label}</option>
+					(bookshelf.value !== this.props.book.shelf) &&
+					(<option key={index} value={bookshelf.value}>{bookshelf.label}</option>)
 				))}
 			</select>
 		)
