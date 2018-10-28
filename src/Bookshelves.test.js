@@ -1,19 +1,37 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import Bookshelves from './Bookshelves';
 import defaultBookshelves from './defaultBookshelves';
-import defaultBooks from './defaultBooks';
 
 describe('<Bookshelves />', function() {
+	let bookshelves = {};
 	const bookshelvesKeys = defaultBookshelves
-			.filter(bookshelve => bookshelve.show)
-			.map(bookshelve => (bookshelve.value));
+			.filter(bookshelf => bookshelf.show)
+			.map(bookshelf => {
+				bookshelves[bookshelf.value] = [];
+				return bookshelf.value
+			});
+
+	const handleUpdateBookshelf = jest.fn();
 
 	it('renders without crashing', () => {
-		shallow(<Bookshelves />);
+		shallow(
+			<MemoryRouter>
+				<Bookshelves
+					bookshelves={bookshelves}
+					handleUpdateBookshelf={handleUpdateBookshelf} />
+			</MemoryRouter>
+		);
 	});
 
 	it(`render bookshelvesKeys.length bookshelf`, () => {
-		const wrapper = mount(<Bookshelves />);
+		const wrapper = mount(
+			<MemoryRouter>
+				<Bookshelves
+					bookshelves={bookshelves}
+					handleUpdateBookshelf={handleUpdateBookshelf} />
+			</MemoryRouter>
+		);
 		expect(wrapper.find('.bookshelf')).toHaveLength(bookshelvesKeys.length);
 	});
 });

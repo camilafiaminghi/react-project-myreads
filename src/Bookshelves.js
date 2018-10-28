@@ -1,78 +1,35 @@
-import React, { Component } from 'react';
-import defaultBookshelves from './defaultBookshelves';
-import * as BooksAPI from './BooksAPI';
+import React from 'react';
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
 import Bookshelf from './Bookshelf';
 import './Bookshelves.scss';
+import defaultBookshelves from './defaultBookshelves';
 
-class Bookshelves extends Component {
-
-	constructor() {
-		super();
-		this.state = {
-			books: [],
-			bookshelves: this.setStateBookshelves()
-		}
-	}
-
-	/**
-   * Add bookshelves from default object
-   */
-	setStateBookshelves = () => {
-  	let categories = {};
-  	defaultBookshelves
-			.filter(bookshelve => bookshelve.show)
-			.forEach(bookshelve => { categories[bookshelve.value] = []; });
-		return categories;
-  }
-
-  /**
-   * Update both states books and bookshelves
-   */
-	updateStateBookshelves = (books) => {
-		let bookshelves = {};
-		Object.keys(this.state.bookshelves).forEach(bookshelf => {
-			const booksByCategory = books.filter(book => book.shelf === bookshelf);
-			bookshelves[bookshelf] = booksByCategory;
-		});
-
-		this.setState(currentState => ({bookshelves, books}));
-  }
-
-  /**
-   * Update fired by onChange
-   */
-  handleUpdateBookshelf = (book, shelf) => {
-  	BooksAPI.update(book, shelf)
-      .then((response) => {
-      	book.shelf = shelf;
-		  	const bookshelves = [...this.state.books, book];
-		  	this.updateStateBookshelves([...(new Set(bookshelves))]);
-      });
-  }
-
-  componentDidMount() {
-		BooksAPI.getAll()
-      .then((books) => {
-      	this.updateStateBookshelves(books);
-      });
-  }
-
-  render() {
-  	const bookshelves = defaultBookshelves.filter((bookshelve) => bookshelve.show);
-
-  	return (
-      <div className="bookshelves-title">
-        <h1>MyReads</h1>
-        {bookshelves.map((bookshelf, index) => (
-        	<Bookshelf
-        		key={index}
-        		category={bookshelf.label}
-        		books={this.state.bookshelves[bookshelf.value]}
-        		handleUpdateBookshelf={this.handleUpdateBookshelf} />
-        ))}
+const Bookshelves = ({bookshelves, handleUpdateBookshelf}) => {
+	return (
+		<div className="bookshelves">
+			<div className="bookshelves-title">
+      	<h1>MyReads</h1>
       </div>
-    );
-  }
+      {defaultBookshelves.filter((bookshelf) => bookshelf.show).map((bookshelf, index) => (
+      	<Bookshelf
+      		key={index}
+      		category={bookshelf.label}
+      		books={bookshelves[bookshelf.value]}
+      		handleUpdateBookshelf={handleUpdateBookshelf} />
+      ))}
+      <div className="link-search">
+      	<Link
+          className="link-search"
+          to="/search">Add a book</Link>
+      </div>
+    </div>
+	);
 }
+
+Bookshelves.propTypes = {
+  bookshelves: PropTypes.object.isRequired,
+  handleUpdateBookshelf: PropTypes.func.isRequired
+};
 
 export default Bookshelves;

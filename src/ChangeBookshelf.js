@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import defaultBookshelves from './defaultBookshelves';
 import PropTypes from 'prop-types';
+import defaultBookshelves from './defaultBookshelves';
 import './ChangeBookshelf.scss';
 
 class ChangeBookshelf extends Component {
