@@ -21,11 +21,13 @@ class ChangeBookshelf extends Component {
 	}
 
 	render() {
+		const shelf = (this.props.book.hasOwnProperty('shelf')) ? this.props.book.shelf : 'none';
+
 		return (
 			<select onChange={(event) => this.handleChange(event)} value={this.state.value}>
 				<option value="move" disabled="">Move to...</option>
 				{defaultBookshelves.map((bookshelf, index) => (
-					(bookshelf.value !== this.props.book.shelf) &&
+					(bookshelf.value !== shelf) &&
 					(<option key={index} value={bookshelf.value}>{bookshelf.label}</option>)
 				))}
 			</select>
