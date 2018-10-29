@@ -141,3 +141,7 @@ ul, ol {
   line-height: 24px;
   letter-spacing: 0;
 }
+
+/* GLOBALS */
+@import './scss/variables';
+@import './scss/mixins';
