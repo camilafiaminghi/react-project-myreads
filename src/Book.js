@@ -17,6 +17,8 @@ const Book = ({book, handleUpdateBookshelf}) => {
 					<div className="book-shelf-changer">
 						<ChangeBookshelf book={book} handleUpdateBookshelf={handleUpdateBookshelf} />
 					</div>
+				</div>
+				<div className="book-content">
 					<div className="book-title">
 						{book.title}
 					</div>

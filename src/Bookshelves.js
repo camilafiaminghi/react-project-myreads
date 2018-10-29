@@ -18,9 +18,9 @@ const Bookshelves = ({bookshelves, handleUpdateBookshelf}) => {
       		books={bookshelves[bookshelf.value]}
       		handleUpdateBookshelf={handleUpdateBookshelf} />
       ))}
-      <div className="link-search">
+      <div className="btn-add-wrapper">
       	<Link
-          className="link-search"
+          className="btn-add"
           to="/search">Add a book</Link>
       </div>
     </div>

@@ -1,3 +1,118 @@
+// Breakpoint
+// =====================================================
 @mixin breakpoint($prop) {
-	@media all and ($prop) { @content; }
+	@media all and ($prop) {
+		@content;
+	}
 }
+// [END] Breakpoint
+// =====================================================
+// Vendor
+// =====================================================
+@mixin vendor($property, $value) {
+	$expandProperty: index($vendor-properties, $property);
+	$expandValue: index($vendor-values, $value);
+
+	// Expand value?
+	@if ($expandValue != null) {
+		@each $vendor in $vendor-prefixes {
+			#{$property}: #{$vendor}#{$value};
+		}
+	}
+	@else {
+		#{$property}: #{$value};
+	}
+
+	// Expand property?
+	@if ($expandProperty != null) {
+		@each $vendor in $vendor-prefixes {
+			#{$vendor}#{$property}: $value;
+		}
+	}
+}
+// [END] Vendor
+// =====================================================
+// Animation
+// =====================================================
+@mixin animation($animation) {
+	@include vendor('animation', $animation);
+}
+// [END] Animation use => @include animation('riple');
+// =====================================================
+// Transform
+// =====================================================
+@mixin transform($transforms) {
+	@include vendor('transform', $transforms);
+}
+// [END] Transform
+// =====================================================
+// Box-shadow
+// =====================================================
+@mixin box-shadow($h: 2px, $v: 2px, $b: 2px, $s: 0px, $c: $black-dark) {
+	@include vendor('box-shadow', $h $v $b $s $c);
+}
+// [END] Box-shadow use => @include box-shadow(2px, 2px, 2px, 0px, rgba(0,0,0,0.3));
+// =====================================================
+// Border-radius
+// =====================================================
+@mixin border-radius($radius) {
+	@include vendor('border-radius', $radius);
+}
+// [END] Border-radius use => @include border-radius(5px);
+// =====================================================
+// Transition
+// =====================================================
+@mixin transition($type: all, $time: 0.2s, $method: $ease-in-out, $delay: 0s) {
+	@include vendor('transition', $type $time $method $delay);
+}
+// [END] Transition use => @include transition(all, 0.2s, $ease-in-out);
+// =====================================================
+// Clearfix
+// =====================================================
+@mixin clearfix () {
+	&:before,
+	&:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+}
+// [END] Clearfix
+// =====================================================
+// Fluid type
+// =====================================================
+@mixin interpolate($properties, $min-screen, $max-screen, $min-value, $max-value) {
+	& {
+		@each $property in $properties {
+			#{$property}: $min-value;
+		}
+
+		@media screen and (min-width: $min-screen) {
+			@each $property in $properties {
+				#{$property}: calc-interpolation($min-screen, $min-value, $max-screen, $max-value);
+			}
+		}
+
+		@media screen and (min-width: $max-screen) {
+			@each $property in $properties {
+				#{$property}: $max-value;
+			}
+		}
+	}
+}
+@function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
+	$a: ($max-value - $min-value) / ($max-screen - $min-screen);
+	$b: $min-value - $a * $min-screen;
+
+	$sign: "+";
+	@if ($b < 0) {
+		$sign: "-";
+		$b: abs($b);
+	}
+	@return calc(#{$a*100}vw #{$sign} #{$b});
+}
+// [END] Fluid type
+// =====================================================

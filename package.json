@@ -44,7 +44,7 @@
     "regenerator-runtime": "^0.12.1"
   },
   "jest": {
-  	"coveragePathIgnorePatterns": [
+    "coveragePathIgnorePatterns": [
       "node_modules"
     ],
     "setupFiles": [

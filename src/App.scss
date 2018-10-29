@@ -1,3 +1,75 @@
+@charset "UTF-8";
+// Imports
+// =====================================================
+@import './scss/common';
+// [END] Imports
+// =====================================================
 .app {
   text-align: center;
+  position: relative;
+  padding: 0 0 40px 0;
+  @include clearfix();
+}
+
+.btn-add-wrapper {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+.btn-add {
+	position: relative;
+	background-image: url('./icons/add.svg');
+	background-position: 65% 65%;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  background-color: $color-secondary;
+  font-size: 0;
+  display: block;
+  width: 52px;
+  height: 52px;
+	@include border-radius(100% 0 0 0)
+	@include box-shadow(0, 0, 6px, 0px, rgba(0,0,0,0.3));
+	@include transition(all, 0.2s, $ease-in-out);
+
+	&:hover {
+		// background-color: $color-secondary-dark;
+		// @include vendor('animation', 'riple 0.6s ease-out');
+	}
+
+	// &:before {
+	// 	content: '';
+	// 	position: absolute;
+	// 	top: 50%;
+	// 	left: 50%;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	background: rgba(255, 255, 255, .5);
+	// 	opacity: 0;
+	// 	border-radius: 100%;
+	// 	transform: scale(1, 1) translate(-50%);
+	// 	transform-origin: 100% 100%;
+	// }
+
+	// &:focus:not(:active)::before,
+	// &:hover::before {
+ //  	@include vendor('animation', 'riple 0.6s ease-out');
+ //  }
+}
+
+.btn-back {
+	background-image: url('./icons/arrow-back.svg');
+	background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  font-size: 0;
+  display: block;
+  width: 50px;
+  height: 53px;
+	@include border-radius(5px)
+	@include box-shadow(2px, 2px, 2px, 0px, rgba(0,0,0,0.3));
+
+	&:hover {
+		@include vendor('animation', 'riple');
+	}
 }

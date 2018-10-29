@@ -1,0 +1,30 @@
+@charset "UTF-8";
+// Imports
+// =====================================================
+@import './scss/common';
+// [END] Imports
+// =====================================================
+.bookshelf {
+	text-align: center;
+	@include clearfix();
+}
+.bookshelf-title {
+	color: $default-color-inverse;
+	background-color: $color-primary-light;
+	text-align: left;
+	@include box-shadow(0px, 2px, 4px, 0px, rgba(0,0,0,0.2));
+}
+.books-grid {
+	@include vendor('display', 'flex');
+	@include vendor('flex-direction', 'row');
+	@include vendor('align-content', 'center');
+
+	li {
+		text-align: left;
+		display: inline-block;
+		// @include vendor('display', 'flex');
+		// @include vendor('flex-direction', 'column');
+		// @include vendor('align-content', 'center');
+	}
+}
+

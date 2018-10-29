@@ -1,8 +1,17 @@
+@charset "UTF-8";
+// Imports
+// =====================================================
+@import './scss/common';
+// [END] Imports
+// =====================================================
 .bookshelves {
-
+	text-align: center;
+	@include clearfix();
 }
-
 .bookshelves-title {
-	margin: 0
+	color: $default-color-inverse;
+	background-color: $color-primary-dark;
+	@include box-shadow(0px, 2px, 4px, 0px, rgba(0,0,0,0.2));
+	// @include vendor('background', 'linear-gradient(to left, #{$color-primary-dark} 0%, #{$color-primary-light} 100%)');
 }
 
