@@ -82,7 +82,7 @@
 }
 // [END] Clearfix
 // =====================================================
-// Fluid
+// Fluid from codepen: https://codepen.io/MadeByMike/pen/vNrvdZ
 // =====================================================
 @function calc-interpolation($min-screen, $min-value, $max-screen, $max-value) {
 	$a: ($max-value - $min-value) / ($max-screen - $min-screen);
