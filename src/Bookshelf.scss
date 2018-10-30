@@ -14,7 +14,7 @@
 	text-align: left;
 
 	@include box-shadow(0px, 2px, 4px, 0px, rgba(0,0,0,0.2));
-	@include interpolate((font-size), $min-screen, $max-screen, 18px, 30px);
+	@include interpolate((font-size), $min-screen, $max-screen, 18px, 28px);
 	border-bottom: 1px solid daarken($color-primary, 20);
 }
 

@@ -37,7 +37,7 @@
 @mixin animation($animation) {
 	@include vendor('animation', $animation);
 }
-// [END] Animation use => @include animation('riple');
+// [END] Animation use => @include animation(ripple);
 // =====================================================
 // Transform
 // =====================================================
