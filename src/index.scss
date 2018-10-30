@@ -39,7 +39,8 @@ h1, h2, h3, h4, h5, h6, p {
 }
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 300;
-	@include interpolate((padding-top, padding-right, padding-bottom, padding-left), 20rem, 70rem, .4rem, .8rem);
+	@include interpolate((padding-top, padding-bottom), $min-screen, $max-screen, 8px, 10px);
+	@include interpolate((padding-right, padding-left), $min-screen, $max-screen, 20px, 24px);
 }
 fieldset {
   border: 0;
@@ -57,4 +58,7 @@ a {
 }
 ul, ol {
 	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
+

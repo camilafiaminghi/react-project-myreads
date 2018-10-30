@@ -14,17 +14,19 @@ const Book = ({book, handleUpdateBookshelf}) => {
 			<div className="book">
 				<div className="book-top">
 					<div className="book-cover" style={bookImg}></div>
-					<div className="book-shelf-changer">
-						<ChangeBookshelf book={book} handleUpdateBookshelf={handleUpdateBookshelf} />
-					</div>
+					<ChangeBookshelf
+						book={book}
+						handleUpdateBookshelf={handleUpdateBookshelf} />
 				</div>
 				<div className="book-content">
 					<div className="book-title">
 						{book.title}
 					</div>
-					{(book.hasOwnProperty('authors')) && <div className="book-authors">
-						{book.authors.map((author, index) => ((index > 0) ? `, ${author}` : author))}
-					</div>}
+					{(book.hasOwnProperty('authors')) &&
+						<div className="book-authors">
+							{book.authors.map((author, index) => ((index > 0) ? `, ${author}` : author))}
+						</div>
+					}
 				</div>
 			</div>
 		</li>

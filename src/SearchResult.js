@@ -6,7 +6,7 @@ import './SearchResult.scss';
 const SearchResult = ({books, handleUpdateBookshelf}) => {
 	return(
 		<div className="search-result">
-			<ul>
+			<ul className="list">
 				{books.map((book, index) => (
 					<Book key={index} book={book} handleUpdateBookshelf={handleUpdateBookshelf} />
 				))}

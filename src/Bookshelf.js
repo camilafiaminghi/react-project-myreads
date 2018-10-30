@@ -7,7 +7,7 @@ const Bookshelf = ({category, books, handleUpdateBookshelf}) => {
 	return (
 		<div className="bookshelf">
 			<h2 className="bookshelf-title">{category}</h2>
-			<ol className="books-grid">
+			<ol className="list">
 				{books.map((book, index) => (
 					<Book key={index} book={book} handleUpdateBookshelf={handleUpdateBookshelf} />
 				))}

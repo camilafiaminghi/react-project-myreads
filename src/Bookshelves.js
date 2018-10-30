@@ -8,9 +8,7 @@ import defaultBookshelves from './defaultBookshelves';
 const Bookshelves = ({bookshelves, handleUpdateBookshelf}) => {
 	return (
 		<div className="bookshelves">
-			<div className="bookshelves-title">
-      	<h1>MyReads</h1>
-      </div>
+			<h1 className="bookshelves-title">MyReads</h1>
       {defaultBookshelves.filter((bookshelf) => bookshelf.show).map((bookshelf, index) => (
       	<Bookshelf
       		key={index}

@@ -11,17 +11,24 @@ class Search extends Component {
 		this.state = {
 			query: '',
 			books: [],
-			response: {}
+			loading: false
 		}
 	}
 
 	handleSearch = (query) => {
+		this.setState(currentState => ({loading: true}));
 		BooksAPI.search(query)
       .then((response) => {
       	if (!response.hasOwnProperty('error')) {
-      		this.setState(currentState => ({books: response}));
+      		this.setState(currentState => ({
+      			books: response,
+      			loading: false
+      		}));
       	} else {
-      		this.setState(currentState => ({books: []}));
+      		this.setState(currentState => ({
+      			books: [],
+      			loading: false
+      		}));
       	}
       });
 	}
@@ -57,7 +64,10 @@ class Search extends Component {
 							placeholder="Search by title or author" />
 					</div>
 				</div>
-				<SearchResult books={books} handleUpdateBookshelf={handleUpdateBookshelf} />
+				{(this.state.loading) && <p className="search-loading">Loading...</p>}
+				{(!this.state.loading) &&
+					<SearchResult books={books} handleUpdateBookshelf={handleUpdateBookshelf} />
+				}
 			</div>
 		);
 	}

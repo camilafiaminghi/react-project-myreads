@@ -1,0 +1,10 @@
+@charset "UTF-8";
+// Imports
+// =====================================================
+@import './scss/common';
+// [END] Imports
+// =====================================================
+.search-result {
+	text-align: center;
+	@include interpolate((padding-top, padding-right, padding-bottom, padding-left), $min-screen, $max-screen, 12px, 18px);
+}
