@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Debounce } from 'react-throttle';
 import * as BooksAPI from './api/Books';
 import SearchResult from './SearchResult';
@@ -14,6 +15,10 @@ class Search extends Component {
 			loading: false,
 			message: ''
 		}
+	}
+
+	static propTypes = {
+	  handleUpdateBookshelf: PropTypes.func.isRequired,
 	}
 
 	handleSearch = (query) => {
