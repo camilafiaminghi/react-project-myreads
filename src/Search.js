@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Debounce } from 'react-throttle';
 import * as BooksAPI from './api/Books';
 import SearchResult from './SearchResult';
 import './Search.scss';
@@ -9,44 +10,50 @@ class Search extends Component {
 	constructor() {
 		super();
 		this.state = {
-			query: '',
 			books: [],
-			loading: false
+			loading: false,
+			message: ''
 		}
 	}
 
 	handleSearch = (query) => {
 		this.setState(currentState => ({loading: true}));
+
 		BooksAPI.search(query)
       .then((response) => {
       	if (!response.hasOwnProperty('error')) {
+
       		this.setState(currentState => ({
       			books: response,
-      			loading: false
+      			loading: false,
+      			message: ''
       		}));
+
       	} else {
+
       		this.setState(currentState => ({
       			books: [],
-      			loading: false
+      			loading: false,
+      			message: 'Search term not found. Please try in other words.'
       		}));
       	}
       });
 	}
 
-	updateQuery = (query) => {
-		this.setState(() => ({
-			query: query
-		}));
+	updateQuery = (event) => {
+		const query = event.target.value;
 
 		if (query.length >= 3) {
 			this.handleSearch(query.trim());
 		} else if (query.length === 0) {
-			this.setState(currentState => ({books: []}));
+			this.setState(currentState => ({
+				books: [],
+				message: ''
+			}));
 		}
 	}
 
 	render() {
-		const query = this.state.query;
 		const books = this.state.books;
 		const handleUpdateBookshelf = this.props.handleUpdateBookshelf;
 
@@ -57,13 +64,15 @@ class Search extends Component {
 	          className="close-search"
 	          to="/">Close</Link>
 					<div className="search-input">
-						<input
-							onChange={(event) => this.updateQuery(event.target.value)}
-							value={query}
-							type="text"
-							placeholder="Search by title or author" />
+						<Debounce time="400" handler="onChange">
+							<input
+								onChange={(event) => this.updateQuery(event)}
+								type="text"
+								placeholder="Search by title or author" />
+						</Debounce>
 					</div>
 				</div>
+				{(this.state.message.length > 0) && <p className="search-message">{this.state.message}</p>}
 				{(this.state.loading) && <p className="search-loading">Loading...</p>}
 				{(!this.state.loading) &&
 					<SearchResult books={books} handleUpdateBookshelf={handleUpdateBookshelf} />
