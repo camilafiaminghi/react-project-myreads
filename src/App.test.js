@@ -4,6 +4,7 @@ import Bookshelves from './Bookshelves';
 import Search from './Search';
 import App from './App';
 import defaultBookshelves from './defaultBookshelves';
+import * as BooksAPI from './api/Books';
 
 describe('<App />', function() {
 	let bookshelves = {};
@@ -51,5 +52,11 @@ describe('<App />', function() {
 		);
 
 	  expect(wrapper.find(Search)).toHaveLength(1);
+	});
+
+	it('expect setStateBookshelves return value', () => {
+		const wrapper = shallow(<App />);
+		const spy = jest.spyOn(wrapper.instance(), 'setStateBookshelves');
+		spy.mockReturnValue(bookshelvesKeys);
 	});
 });
