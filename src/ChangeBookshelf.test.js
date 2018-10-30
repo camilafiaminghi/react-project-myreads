@@ -12,8 +12,15 @@ describe('<ChangeBookshelf />', function() {
 		authors: ['William E. Shotts, Jr.']
 	};
 
+	const handleUpdateBookshelf = jest.fn();
+
 	it('renders without crashing', () => {
-		const handleUpdateBookshelf = jest.fn();
 		shallow(<ChangeBookshelf book={book} handleUpdateBookshelf={handleUpdateBookshelf} />);
+	});
+
+	it('has select', () => {
+		const wrapper = mount(<ChangeBookshelf book={book} handleUpdateBookshelf={handleUpdateBookshelf} />);
+		const button = wrapper.find('select');
+		button.simulate('change');
 	});
 });

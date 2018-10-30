@@ -7,10 +7,18 @@ describe('<Bookshelf />', function() {
 			.filter(bookshelve => bookshelve.show)
 			.map(bookshelve => (bookshelve.value));
 
+	const books    = [];
+	const category = bookshelvesKeys[0];
+	const handleUpdateBookshelf = jest.fn();
+	const component = <Bookshelf books={books} category={category} handleUpdateBookshelf={handleUpdateBookshelf} />;
+
 	it('renders without crashing', () => {
-		const books    = [];
-		const category = bookshelvesKeys[0];
-		const handleUpdateBookshelf = jest.fn();
-		shallow(<Bookshelf books={books} category={category} handleUpdateBookshelf={handleUpdateBookshelf} />);
+		shallow(component);
+	});
+
+	it('renders children', () => {
+		const wrapper = shallow(component);
+		expect(wrapper.find('.Bookshelf-title')).toBeDefined();
+		expect(wrapper.find('.list')).toBeDefined();
 	});
 });

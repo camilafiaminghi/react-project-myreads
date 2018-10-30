@@ -24,7 +24,7 @@ describe('<Bookshelves />', function() {
 		);
 	});
 
-	it(`render bookshelvesKeys.length bookshelf`, () => {
+	it(`render ${bookshelvesKeys.length} bookshelf`, () => {
 		const wrapper = mount(
 			<MemoryRouter>
 				<Bookshelves
@@ -33,5 +33,15 @@ describe('<Bookshelves />', function() {
 			</MemoryRouter>
 		);
 		expect(wrapper.find('.bookshelf')).toHaveLength(bookshelvesKeys.length);
+	});
+
+	it('has link to search', () => {
+		const wrapper = shallow(
+				<Bookshelves
+					bookshelves={bookshelves}
+					handleUpdateBookshelf={handleUpdateBookshelf} />
+		);
+		const link = wrapper.find('.btn-add');
+		link.simulate('click');
 	});
 });
