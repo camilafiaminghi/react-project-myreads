@@ -6,8 +6,6 @@ import Search from './Search';
 import defaultBookshelves from './defaultBookshelves';
 import './App.scss';
 
-import defaultBooks from './defaultBooks';
-
 class App extends Component {
 	constructor() {
 		super();
@@ -54,11 +52,10 @@ class App extends Component {
   }
 
 	componentDidMount() {
-		window.setTimeout(() => { this.updateStateBookshelves(defaultBooks); }, 1000);
-		// BooksAPI.getAll()
-  //     .then((books) => {
-  //     	this.updateStateBookshelves(books);
-  //     });
+		BooksAPI.getAll()
+      .then((books) => {
+      	this.updateStateBookshelves(books);
+      });
   }
 
   render() {

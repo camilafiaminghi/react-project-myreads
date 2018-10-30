@@ -20,7 +20,6 @@ describe('<Book />', function() {
 	it('renders children', () => {
 		const wrapper = shallow(<Book book={book} handleUpdateBookshelf={handleUpdateBookshelf} />);
 		expect(wrapper.find('.book-title')).toBeDefined();
-		expect(wrapper.find('.book-authors')).toBeDefined();
 		expect(wrapper.find('.book-cover')).toBeDefined();
 	});
 });
