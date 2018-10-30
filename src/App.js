@@ -51,11 +51,9 @@ class App extends Component {
       });
   }
 
-	componentDidMount() {
-		BooksAPI.getAll()
-      .then((books) => {
-      	this.updateStateBookshelves(books);
-      });
+	async componentDidMount() {
+		const books = await BooksAPI.getAll();
+  	this.updateStateBookshelves(books);
   }
 
   render() {
