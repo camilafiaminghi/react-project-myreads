@@ -65,7 +65,9 @@ class App extends Component {
           	handleUpdateBookshelf={this.handleUpdateBookshelf} />
         )} />
         <Route path='/search' render={({history}) => (
-          <Search handleUpdateBookshelf={this.handleUpdateBookshelf} />
+          <Search
+          	selectedBooks={this.state.books}
+          	handleUpdateBookshelf={this.handleUpdateBookshelf} />
         )} />
       </div>
     );

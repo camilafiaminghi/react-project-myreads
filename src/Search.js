@@ -18,7 +18,8 @@ class Search extends Component {
 	}
 
 	static propTypes = {
-	  handleUpdateBookshelf: PropTypes.func.isRequired,
+		selectedBooks: PropTypes.array.isRequired,
+	  handleUpdateBookshelf: PropTypes.func.isRequired
 	}
 
 	handleSearch = (query) => {
@@ -26,22 +27,11 @@ class Search extends Component {
 
 		BooksAPI.search(query)
       .then((response) => {
-      	if (!response.hasOwnProperty('error')) {
+      	const message = (!response.hasOwnProperty('error')) ? '' : 'Search term not found. Please try in other words.';
+      	const books   = (!response.hasOwnProperty('error')) ? response : [];
+      	const loading = false;
 
-      		this.setState(currentState => ({
-      			books: response,
-      			loading: false,
-      			message: ''
-      		}));
-
-      	} else {
-
-      		this.setState(currentState => ({
-      			books: [],
-      			loading: false,
-      			message: 'Search term not found. Please try in other words.'
-      		}));
-      	}
+      	this.setState(currentState => ({message, loading, books}));
       });
 	}
 
@@ -80,7 +70,10 @@ class Search extends Component {
 				{(this.state.message.length > 0) && <p className="search-message">{this.state.message}</p>}
 				{(this.state.loading) && <p className="search-loading">Loading...</p>}
 				{(!this.state.loading) &&
-					<SearchResult books={books} handleUpdateBookshelf={handleUpdateBookshelf} />
+					<SearchResult
+						books={books}
+						handleUpdateBookshelf={handleUpdateBookshelf}
+						selectedBooks={this.props.selectedBooks} />
 				}
 			</div>
 		);

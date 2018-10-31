@@ -3,14 +3,16 @@ import SearchResult from './SearchResult';
 
 describe('<SearchResult />', function() {
 	const books = [];
+	const selectedBooks = [];
 	const handleUpdateBookshelf = jest.fn();
+	const component = <SearchResult books={books} selectedBooks={selectedBooks} handleUpdateBookshelf={handleUpdateBookshelf} />;
 
 	it('renders without crashing', () => {
-		shallow(<SearchResult books={books} handleUpdateBookshelf={handleUpdateBookshelf} />);
+		shallow(component);
 	});
 
 	it('renders without crashing', () => {
-		const wrapper = shallow(<SearchResult books={books} handleUpdateBookshelf={handleUpdateBookshelf} />);
+		const wrapper = shallow(component);
 		expect(wrapper.find('.list')).toBeDefined();
 	});
 });

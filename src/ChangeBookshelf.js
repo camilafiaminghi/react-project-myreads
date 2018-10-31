@@ -4,14 +4,12 @@ import defaultBookshelves from './defaultBookshelves';
 import './ChangeBookshelf.scss';
 
 const ChangeBookshelf = ({book, handleUpdateBookshelf}) => {
-	const shelf = (book.hasOwnProperty('shelf')) ? book.shelf : 'none';
-
 	return (
 		<div className="bookshelf-changer">
  				<select
- 					value={shelf}
+ 					value={(book.hasOwnProperty('shelf')) ? book.shelf : 'none'}
  					onChange={(event) => handleUpdateBookshelf(book, event.target.value)}>
- 					<option value="move">Move to...</option>
+ 					<option value="move" disabled="disabled">Move to...</option>
  					{defaultBookshelves.map((bookshelf, index) => (
 						<option
 							key={index}

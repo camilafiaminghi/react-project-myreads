@@ -47,6 +47,7 @@ describe('<App />', function() {
 		const wrapper = mount(
 			<MemoryRouter initialEntries={[ '/search' ]}>
 				<Search
+					selectedBooks={[]}
 					handleUpdateBookshelf={handleUpdateBookshelf} />
 			</MemoryRouter>
 		);

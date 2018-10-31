@@ -5,7 +5,8 @@ import Search from './Search';
 
 describe('<Search />', function() {
 	const handleUpdateBookshelf = jest.fn();
-	const component = <MemoryRouter><Search  handleUpdateBookshelf={handleUpdateBookshelf} /></MemoryRouter>;
+	const selectedBooks = [];
+	const component = <MemoryRouter><Search selectedBooks={selectedBooks} handleUpdateBookshelf={handleUpdateBookshelf} /></MemoryRouter>;
 
 	it('renders without crashing', () => {
 		shallow(component);
