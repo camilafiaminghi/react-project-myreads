@@ -11,7 +11,7 @@ const ChangeBookshelf = ({book, handleUpdateBookshelf}) => {
  				<select
  					value={shelf}
  					onChange={(event) => handleUpdateBookshelf(book, event.target.value)}>
- 					<option value="move" disabled="">Move to...</option>
+ 					<option value="move">Move to...</option>
  					{defaultBookshelves.map((bookshelf, index) => (
 						<option
 							key={index}
