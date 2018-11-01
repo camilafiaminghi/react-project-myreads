@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import * as BooksAPI from './api/Books';
 import Bookshelves from './Bookshelves';
 import Search from './Search';
+import RouteNotFound from './RouteNotFound';
 import defaultBookshelves from './defaultBookshelves';
 import './App.scss';
 
@@ -59,16 +60,24 @@ class App extends Component {
   render() {
   	return (
       <div className="app">
-      	<Route exact path='/' render={() => (
-          <Bookshelves
-          	bookshelves={this.state.bookshelves}
-          	handleUpdateBookshelf={this.handleUpdateBookshelf} />
-        )} />
-        <Route path='/search' render={({history}) => (
-          <Search
-          	selectedBooks={this.state.books}
-          	handleUpdateBookshelf={this.handleUpdateBookshelf} />
-        )} />
+      	<Switch>
+	      	<Route exact path='/' render={() => (
+	          <Bookshelves
+	          	bookshelves={this.state.bookshelves}
+	          	handleUpdateBookshelf={this.handleUpdateBookshelf} />
+	        )} />
+	        <Route path='/search' render={({history}) => (
+	          <Search
+	          	selectedBooks={this.state.books}
+	          	handleUpdateBookshelf={this.handleUpdateBookshelf} />
+	        )} />
+	        <Route path='/search' render={({history}) => (
+	          <Search
+	          	selectedBooks={this.state.books}
+	          	handleUpdateBookshelf={this.handleUpdateBookshelf} />
+	        )} />
+	        <Route component={RouteNotFound} />
+	      </Switch>
       </div>
     );
   }
